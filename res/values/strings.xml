@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="app_name">Screen Recoder</string>
+    <string name="description">Fill in recording time(180 seconds maximum) and file name to be saved, then press Start to start recording screen, then you can press Exit button to close the window and leave it running in the background. \n\n*Note: this app requires root.</string>
+    <string name="startbtn">Start</string>
+    <string name="stopbtn">Exit</string>
+
+</resources>
