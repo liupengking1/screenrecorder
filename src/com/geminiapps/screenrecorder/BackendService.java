@@ -4,6 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import com.geminiapps.screenrecoder.R;
+import com.geminiapps.screenrecoder.R.string;
 
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -39,8 +40,8 @@ public class BackendService extends Service {
 		Notification notification = new NotificationCompat.Builder(this)
 				// .setContentIntent(contentIntent)
 				.setSmallIcon(R.drawable.ic_launcher).setAutoCancel(true)
-				.setContentTitle("Screen Recorder").setContentText(msg)
-				.getNotification();
+				.setContentTitle(getResources().getString(R.string.app_name))
+				.setContentText(msg).getNotification();
 		startForeground(34546, notification);
 	}
 
@@ -83,12 +84,14 @@ public class BackendService extends Service {
 			} else {
 				if (count == 0)
 					mToastHandler.showToast(
-							"Screen Recorder: recording completed",
+							getResources().getString(
+									string.toast_record_complete),
 							Toast.LENGTH_LONG);
 				count--;
 				BackendService.this.stopSelf();
 			}
-			String msg = "Recording time left: " + count + "/" + recordtime;
+			String msg = getResources().getString(R.string.notification_text)
+					+ count + "/" + recordtime;
 			Notification(msg);
 		}
 	}

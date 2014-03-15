@@ -336,12 +336,24 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f060013;
+        public static final int default_filename=0x7f060022;
+        public static final int default_time=0x7f060021;
         public static final int description=0x7f06001c;
+        public static final int file_name=0x7f060020;
         /**  Replace placeholder ID with your tracking ID 
          */
         public static final int ga_trackingId=0x7f06001a;
+        public static final int notification_text=0x7f060023;
+        public static final int record_time=0x7f06001f;
         public static final int startbtn=0x7f06001d;
         public static final int stopbtn=0x7f06001e;
+        public static final int toast_access_denied=0x7f060028;
+        public static final int toast_already_running=0x7f060026;
+        public static final int toast_not_rooted=0x7f060025;
+        public static final int toast_record_complete=0x7f060024;
+        public static final int toast_record_not_running=0x7f06002a;
+        public static final int toast_run_in_background=0x7f060029;
+        public static final int toast_start_recording=0x7f060027;
     }
     public static final class style {
         /** 

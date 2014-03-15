@@ -4,5 +4,17 @@
     <string name="description">Fill in recording time(180 seconds maximum) and file name to be saved, then press Start to start recording screen, then you can press Exit button to close the window and leave it running in the background.\nRecorded video will be saved in ScreenRecord folder. \n * Note: this app requires root.</string>
     <string name="startbtn">Start</string>
     <string name="stopbtn">Exit</string>
+    <string name="record_time">Record time(s)</string>
+    <string name="file_name">File Name</string>
+    <string name="default_time">30</string>
+    <string name="default_filename">MySampleVideo</string>
+    <string name="notification_text">Recording time left: </string>
+    <string name="toast_record_complete">Screen Recorder: recording completed</string>
+    <string name="toast_not_rooted">It seems your phone is not rooted, Screen Recorder needs root access.</string>
+    <string name="toast_already_running">Record is already running</string>
+    <string name="toast_start_recording">Record started</string>
+    <string name="toast_access_denied">Access root permission denied, recording failed</string>
+    <string name="toast_run_in_background">Recording in the background</string>
+    <string name="toast_record_not_running">Record not running</string>
 
 </resources>

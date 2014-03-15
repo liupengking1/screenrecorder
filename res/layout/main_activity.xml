@@ -13,7 +13,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="Screen Recorder"
+        android:text="@string/app_name"
         android:textColor="#ffffff"
         android:textSize="20sp" />
 
@@ -41,7 +41,7 @@
             android:id="@+id/textView2"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Record time(s)"
+            android:text="@string/record_time"
             android:textColor="#ffffff" />
 
         <AutoCompleteTextView
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="number"
-            android:text="30"
+            android:text="@string/default_time"
             android:textColor="#ffffff" >
 
             <requestFocus />
@@ -68,7 +68,7 @@
             android:id="@+id/textView3"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="File Name"
+            android:text="@string/file_name"
             android:textColor="#ffffff" />
 
         <AutoCompleteTextView
@@ -76,7 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text="MySampleVideo"
+            android:text="@string/default_filename"
             android:textColor="#ffffff" >
 
             <requestFocus />

@@ -2,10 +2,12 @@ package com.geminiapps.screenrecorder;
 
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.geminiapps.screenrecoder.R;
+import com.geminiapps.screenrecoder.R.string;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
@@ -69,9 +71,8 @@ public class Home extends Activity {
 		adView.loadAd(adRequest);
 
 		if (!new Root().isDeviceRooted())
-			Toast.makeText(
-					getApplicationContext(),
-					"Sorry screen recorder needs root access, before you use the app, please root your phone.",
+			Toast.makeText(getApplicationContext(),
+					getResources().getString(string.toast_not_rooted),
 					Toast.LENGTH_LONG).show();
 		else
 			isrooted = true;
@@ -86,23 +87,35 @@ public class Home extends Activity {
 			public void onClick(View v) {
 
 				if (!isrooted)
-					Toast.makeText(
-							getApplicationContext(),
-							"Sorry screen recorder needs root access, before you use the app, please root your phone.",
+					Toast.makeText(getApplicationContext(),
+							getResources().getString(string.toast_not_rooted),
 							Toast.LENGTH_LONG).show();
 				if (startedrecording) {
-					Toast.makeText(getApplicationContext(),
-							"Record is already running.", Toast.LENGTH_LONG)
-							.show();
+					Toast.makeText(
+							getApplicationContext(),
+							getResources().getString(
+									string.toast_already_running),
+							Toast.LENGTH_LONG).show();
 					return;
 				}
 				// create a File object for the parent directory
 				SimpleDateFormat s = new SimpleDateFormat("_yyyyMMdd_HHmmss");
 				String date = s.format(new Date());
+				
+				String name=filename.getText().toString();
+				String newname = null;
+				try {
+					// transcode to show Chinese character
+					byte ptext[] = name.getBytes("ISO-8859-1");
+					newname = new String(ptext, "UTF-8");
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				final String command = "screenrecord --time-limit "
 						+ recordtime.getText().toString()
 						+ " /sdcard/ScreenRecord/"
-						+ filename.getText().toString().replace(" ", "_")
+						+ newname.replace(" ", "_")
 						+ date + ".mp4 &\n";
 
 				final String[] cmd = new String[2];
@@ -123,9 +136,12 @@ public class Home extends Activity {
 							startedrecording = true;
 							runOnUiThread(new Runnable() {
 								public void run() {
-									Toast.makeText(getApplicationContext(),
-											"Record started", Toast.LENGTH_LONG)
-											.show();
+									Toast.makeText(
+											getApplicationContext(),
+											getResources()
+													.getString(
+															string.toast_start_recording),
+											Toast.LENGTH_LONG).show();
 								}
 							});
 						} else {
@@ -135,7 +151,8 @@ public class Home extends Activity {
 								public void run() {
 									Toast.makeText(
 											getApplicationContext(),
-											"Access root permission denied, recording failed",
+											getResources().getString(
+													string.toast_access_denied),
 											Toast.LENGTH_LONG).show();
 								}
 							});
@@ -152,13 +169,18 @@ public class Home extends Activity {
 			public void onClick(View v) {
 				System.out.println("stop pressed");
 				if (startedrecording) {
-					Toast.makeText(getApplicationContext(),
-							"Recording in the background", Toast.LENGTH_LONG)
-							.show();
+					Toast.makeText(
+							getApplicationContext(),
+							getResources().getString(
+									string.toast_run_in_background),
+							Toast.LENGTH_LONG).show();
 					finish();
 				} else {
-					Toast.makeText(getApplicationContext(),
-							"Record not running", Toast.LENGTH_LONG).show();
+					Toast.makeText(
+							getApplicationContext(),
+							getResources().getString(
+									string.toast_record_not_running),
+							Toast.LENGTH_LONG).show();
 					finish();
 				}
 			}
@@ -193,23 +215,29 @@ public class Home extends Activity {
 		EasyTracker.getInstance(this).activityStop(this);
 		System.out.println("Home activity destroyed");
 	}
-	
+
 	@Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        if(event.getKeyCode() == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
-        	System.out.println("back pressed");
+	public boolean dispatchKeyEvent(KeyEvent event) {
+		if (event.getKeyCode() == KeyEvent.KEYCODE_BACK
+				&& event.getAction() == KeyEvent.ACTION_DOWN) {
+			System.out.println("back pressed");
 			if (startedrecording) {
-				Toast.makeText(getApplicationContext(),
-						"Recording in the background", Toast.LENGTH_LONG)
-						.show();
+				Toast.makeText(
+						getApplicationContext(),
+						getResources()
+								.getString(string.toast_run_in_background),
+						Toast.LENGTH_LONG).show();
 				finish();
 			} else {
-				Toast.makeText(getApplicationContext(),
-						"Record not running", Toast.LENGTH_LONG).show();
+				Toast.makeText(
+						getApplicationContext(),
+						getResources().getString(
+								string.toast_record_not_running),
+						Toast.LENGTH_LONG).show();
 				finish();
 			}
-        }
-        return super.dispatchKeyEvent(event);
-    }
+		}
+		return super.dispatchKeyEvent(event);
+	}
 
 }

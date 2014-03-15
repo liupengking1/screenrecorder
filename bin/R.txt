@@ -101,10 +101,22 @@ int string common_google_play_services_update_text 0x7f060008
 int string common_google_play_services_update_title 0x7f060007
 int string common_signin_button_text 0x7f060012
 int string common_signin_button_text_long 0x7f060013
+int string default_filename 0x7f060022
+int string default_time 0x7f060021
 int string description 0x7f06001c
+int string file_name 0x7f060020
 int string ga_trackingId 0x7f06001a
+int string notification_text 0x7f060023
+int string record_time 0x7f06001f
 int string startbtn 0x7f06001d
 int string stopbtn 0x7f06001e
+int string toast_access_denied 0x7f060028
+int string toast_already_running 0x7f060026
+int string toast_not_rooted 0x7f060025
+int string toast_record_complete 0x7f060024
+int string toast_record_not_running 0x7f06002a
+int string toast_run_in_background 0x7f060029
+int string toast_start_recording 0x7f060027
 int style AppBaseTheme 0x7f090000
 int style AppTheme 0x7f090001
 int[] styleable AdsAttrs { 0x7f010000, 0x7f010001, 0x7f010002 }
