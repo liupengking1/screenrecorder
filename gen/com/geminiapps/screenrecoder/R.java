@@ -217,8 +217,10 @@ containing a value of this type.
         public static final int ic_plusone_small_off_client=0x7f02001a;
         public static final int ic_plusone_standard_off_client=0x7f02001b;
         public static final int ic_plusone_tall_off_client=0x7f02001c;
+        public static final int star=0x7f02001d;
     }
     public static final class id {
+        public static final int action_rateme=0x7f05000e;
         public static final int ad=0x7f05000d;
         public static final int filename=0x7f05000a;
         public static final int hybrid=0x7f050004;
@@ -239,6 +241,9 @@ containing a value of this type.
     }
     public static final class layout {
         public static final int main_activity=0x7f030000;
+    }
+    public static final class menu {
+        public static final int actionbar_custom=0x7f0a0000;
     }
     public static final class string {
         public static final int app_name=0x7f06001b;

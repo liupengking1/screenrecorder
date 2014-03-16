@@ -13,12 +13,20 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 
+import android.app.ActionBar;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -27,6 +35,7 @@ import android.widget.Toast;
 public class Home extends Activity {
 	Button startbtn;
 	Button stopbtn;
+	Button rateme;
 	AutoCompleteTextView recordtime;
 	AutoCompleteTextView filename;
 
@@ -43,8 +52,40 @@ public class Home extends Activity {
 	Intent service_intent = new Intent("com.geminiapps.screenrecorder.service");
 
 	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu items for use in the action bar
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.actionbar_custom, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle presses on the action bar items
+		switch (item.getItemId()) {
+		case R.id.action_rateme:
+			openRatingPage();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+
+	private void openRatingPage() {
+		Uri uri = Uri.parse("market://details?id="
+				+ getApplicationContext().getPackageName());
+		Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+		try {
+			startActivity(goToMarket);
+		} catch (ActivityNotFoundException e) {
+			Toast.makeText(getApplicationContext(),
+					"Couldn't launch the market", Toast.LENGTH_LONG).show();
+		}
+	}
+
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		setContentView(R.layout.main_activity);
 		startbtn = (Button) findViewById(R.id.startbtn);
 		stopbtn = (Button) findViewById(R.id.stopbtn);
@@ -101,8 +142,8 @@ public class Home extends Activity {
 				// create a File object for the parent directory
 				SimpleDateFormat s = new SimpleDateFormat("_yyyyMMdd_HHmmss");
 				String date = s.format(new Date());
-				
-				String name=filename.getText().toString();
+
+				String name = filename.getText().toString();
 				String newname = null;
 				try {
 					// transcode to show Chinese character
@@ -114,8 +155,7 @@ public class Home extends Activity {
 				}
 				final String command = "screenrecord --time-limit "
 						+ recordtime.getText().toString()
-						+ " /sdcard/ScreenRecord/"
-						+ newname.replace(" ", "_")
+						+ " /sdcard/ScreenRecord/" + newname.replace(" ", "_")
 						+ date + ".mp4 &\n";
 
 				final String[] cmd = new String[2];
