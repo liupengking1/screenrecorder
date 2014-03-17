@@ -13,20 +13,19 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -91,7 +90,7 @@ public class Home extends Activity {
 		stopbtn = (Button) findViewById(R.id.stopbtn);
 		recordtime = (AutoCompleteTextView) findViewById(R.id.recordtime);
 		filename = (AutoCompleteTextView) findViewById(R.id.filename);
-
+		final Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 		EasyTracker.getInstance(this).activityStart(this);
 
 		// Create an ad.
@@ -136,7 +135,7 @@ public class Home extends Activity {
 							getApplicationContext(),
 							getResources().getString(
 									string.toast_already_running),
-							Toast.LENGTH_LONG).show();
+							Toast.LENGTH_SHORT).show();
 					return;
 				}
 				// create a File object for the parent directory
@@ -174,6 +173,9 @@ public class Home extends Activity {
 							startService(service_intent);
 
 							startedrecording = true;
+
+							// Vibrate for 200 milliseconds
+							vibrator.vibrate(200);
 							runOnUiThread(new Runnable() {
 								public void run() {
 									Toast.makeText(
@@ -181,7 +183,7 @@ public class Home extends Activity {
 											getResources()
 													.getString(
 															string.toast_start_recording),
-											Toast.LENGTH_LONG).show();
+											Toast.LENGTH_SHORT).show();
 								}
 							});
 						} else {
@@ -213,14 +215,14 @@ public class Home extends Activity {
 							getApplicationContext(),
 							getResources().getString(
 									string.toast_run_in_background),
-							Toast.LENGTH_LONG).show();
+							Toast.LENGTH_SHORT).show();
 					finish();
 				} else {
 					Toast.makeText(
 							getApplicationContext(),
 							getResources().getString(
 									string.toast_record_not_running),
-							Toast.LENGTH_LONG).show();
+							Toast.LENGTH_SHORT).show();
 					finish();
 				}
 			}
@@ -266,14 +268,14 @@ public class Home extends Activity {
 						getApplicationContext(),
 						getResources()
 								.getString(string.toast_run_in_background),
-						Toast.LENGTH_LONG).show();
+						Toast.LENGTH_SHORT).show();
 				finish();
 			} else {
 				Toast.makeText(
 						getApplicationContext(),
 						getResources().getString(
 								string.toast_record_not_running),
-						Toast.LENGTH_LONG).show();
+						Toast.LENGTH_SHORT).show();
 				finish();
 			}
 		}

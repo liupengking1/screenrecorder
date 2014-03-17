@@ -9,10 +9,12 @@ import com.geminiapps.screenrecoder.R.string;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
@@ -82,11 +84,15 @@ public class BackendService extends Service {
 			if (count > 0) {
 				count--;
 			} else {
-				if (count == 0)
+				if (count == 0) {
 					mToastHandler.showToast(
 							getResources().getString(
 									string.toast_record_complete),
 							Toast.LENGTH_LONG);
+					Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+					// Vibrate for 200 milliseconds
+					v.vibrate(200);
+				}
 				count--;
 				BackendService.this.stopSelf();
 			}
