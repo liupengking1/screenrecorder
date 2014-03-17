@@ -16,5 +16,6 @@
     <string name="toast_access_denied">Access root permission denied, recording failed</string>
     <string name="toast_run_in_background">Recording in the background</string>
     <string name="toast_record_not_running">Record not running</string>
+    <string name="checkbox_text">close window after recording starts</string>
 
 </resources>

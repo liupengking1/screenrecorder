@@ -28,6 +28,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -37,6 +38,7 @@ public class Home extends Activity {
 	Button rateme;
 	AutoCompleteTextView recordtime;
 	AutoCompleteTextView filename;
+	CheckBox checkbox;
 
 	Process su = null;
 	DataOutputStream outputStream;
@@ -91,6 +93,7 @@ public class Home extends Activity {
 		recordtime = (AutoCompleteTextView) findViewById(R.id.recordtime);
 		filename = (AutoCompleteTextView) findViewById(R.id.filename);
 		final Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+		checkbox = (CheckBox) findViewById(R.id.checkBox1);
 		EasyTracker.getInstance(this).activityStart(this);
 
 		// Create an ad.
@@ -173,9 +176,11 @@ public class Home extends Activity {
 							startService(service_intent);
 
 							startedrecording = true;
-
 							// Vibrate for 200 milliseconds
 							vibrator.vibrate(200);
+							if (checkbox.isChecked()) {
+								finish();
+							}
 							runOnUiThread(new Runnable() {
 								public void run() {
 									Toast.makeText(

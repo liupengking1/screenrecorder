@@ -220,8 +220,9 @@ containing a value of this type.
         public static final int star=0x7f02001d;
     }
     public static final class id {
-        public static final int action_rateme=0x7f05000e;
-        public static final int ad=0x7f05000d;
+        public static final int action_rateme=0x7f05000f;
+        public static final int ad=0x7f05000e;
+        public static final int checkBox1=0x7f05000d;
         public static final int filename=0x7f05000a;
         public static final int hybrid=0x7f050004;
         public static final int none=0x7f050000;
@@ -270,6 +271,7 @@ containing a value of this type.
         [CHAR LIMIT=70] 
          */
         public static final int auth_client_using_bad_version_title=0x7f060014;
+        public static final int checkbox_text=0x7f06002b;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
