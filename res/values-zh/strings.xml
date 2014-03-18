@@ -16,5 +16,6 @@
     <string name="toast_access_denied">获取root权限失败，录像失败</string>
     <string name="toast_run_in_background">屏幕录像机在后台运行</string>
     <string name="toast_record_not_running">录像没有运行</string>
+    <string name="checkbox_text">录像开始后自动关闭窗口</string>
 
 </resources>
