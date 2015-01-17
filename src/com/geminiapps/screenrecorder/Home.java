@@ -46,7 +46,7 @@ public class Home extends Activity {
 	String pid;
 	private AdView adView;
 	/* Your ad unit id. Replace with your actual ad unit id. */
-	private static final String AD_UNIT_ID = "ca-app-pub-5800761622766190/7953199661";
+	private static final String AD_UNIT_ID = "ca-app-pub-9576274567421261/2690931633";
 
 	boolean isrooted = false;
 	boolean startedrecording = false;
@@ -108,7 +108,11 @@ public class Home extends Activity {
 
 		// Create an ad request. Check logcat output for the hashed device ID to
 		// get test ads on a physical device.
-		AdRequest adRequest = new AdRequest.Builder().build();
+		AdRequest adRequest = new AdRequest.Builder()
+		.addTestDevice(AdRequest.DEVICE_ID_EMULATOR) // 所有模拟器
+		.addTestDevice("1D93C8FC4113388A66A6936BE2F7EE67") // 我的Galaxy
+															// Nexus测试手机
+		.build();
 
 		// Start loading the ad in the background.
 		adView.loadAd(adRequest);
